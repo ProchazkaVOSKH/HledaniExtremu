@@ -27,5 +27,29 @@ function druhenejmensi(x) {
     return min2; // Vrací druhou nejmenší hodnotu
 }
 
-// Výpis druhé nejmenší hodnoty z pole do konzole
-console.log(druhenejmensi(pole));
+// Funkce pro výpočet průměru hodnot v poli
+function prumer(x) {
+    let soucet = 0; // Inicializace proměnné pro součet prvků pole
+    for (let i = 0; i < x.length; i++) soucet += x[i]; // Sčítání všech prvků pole
+    return soucet / x.length; // Vrací průměr (suma prvků dělená počtem prvků)
+}
+
+// funkce vyhledání pořadí prvku, který je nejblíže průměru hodnot
+function nejblizeprumeru(x) {
+    let minRozdilu = Infinity; 
+    let indexMinima;                 // připravím si proměnnou pro pořadové číslo nejbližšího prvku
+    let rozdil;                      // připravím si proměnnou pro vzdálenost prvku od průměru
+    let prumernaHodnota = prumer(x); // spočítám průměr a zapamatuji si ho v proměnné
+    for (let i = 0; i < x.length; i++) { 
+        rozdil = Math.abs(prumernaHodnota-x[i]);   // rozdíl může být kladný nebo záporný -> absolutní hodnota
+        if (rozdil < minRozdilu) {
+            minRozdilu = rozdil;
+            indexMinima = i;
+        }
+    }
+    return indexMinima+1; 
+}
+
+
+console.log(prumer(pole));
+console.log(nejblizeprumeru(pole));
